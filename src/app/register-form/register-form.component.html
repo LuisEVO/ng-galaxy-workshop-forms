@@ -1,0 +1,28 @@
+<form [formGroup]="registerForm">
+  <input [formControl]="namesField" placeholder="nombres" /> <br>
+  <div *ngIf="namesField.hasError('required') && (namesField.dirty || namesField.touched)">
+    Este campo es requerido
+  </div>
+  <div *ngIf="namesField.hasError('dniInvalid')">
+    El dni no es valido
+  </div>
+  <input formControlName="lastnames" placeholder="apellidos" /> <br>
+  <select formControlName="gender"> <br>
+    <option>Genero</option>
+    <option value="m">Masculino</option>
+    <option value="y">Femenino</option>
+  </select>
+  <app-input-date formControlName="birthday"></app-input-date>
+  <div *ngIf="birthdayField.hasError('validDate')">
+    Ingrese una fecha valida
+  </div>
+  <div *ngIf="birthdayField.hasError('maxDate')">
+    La fecha ingresada exede la fecha limite
+  </div>
+</form>
+
+valido:  {{ registerForm.valid }}
+  <br>
+<pre>
+  {{ registerForm.value | json }}
+</pre>

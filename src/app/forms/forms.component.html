@@ -1,0 +1,42 @@
+<h2>Formulario en template</h2>
+<input
+  [(ngModel)]="title"
+  #titleTempleteField="ngModel"
+  required
+  minlength="3"
+  pattern=""/>
+<br>
+{{ titleTempleteField.value }} <br>
+
+invalido: {{ titleTempleteField.invalid }} <br>
+
+<span *ngIf="titleTempleteField.errors?.required" >
+  Este campo es requerido
+</span>
+<span *ngIf="titleTempleteField.errors?.minlength" >
+  El minimo de caracteres no se cumple
+</span>
+
+<span *ngIf="titleTempleteField.hasError('required')" >
+  Este campo es requerido
+</span>
+<span *ngIf="titleTempleteField.hasError('minlength')" >
+  El minimo de caracteres no se cumple
+</span>
+
+<h2>Formulario Reactivo</h2>
+<input [formControl]="titleField" />
+
+<br>
+{{ titleField.value }} <br>
+
+invalido: {{ titleField.invalid }} <br>
+
+<span *ngIf="titleField.hasError('required')" >
+  Este campo es requerido
+</span>
+<span *ngIf="titleField.hasError('minlength')" >
+  El minimo de caracteres es {{ titleField.getError('minlength').requiredLength }}
+</span>
+
+
